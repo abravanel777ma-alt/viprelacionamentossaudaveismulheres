@@ -314,7 +314,7 @@
       if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     })();
 
-  // Configuração do download inteligente (fake simplificado)
+// Configuração do download fake inteligente
 const FILE_URL = 'https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963';
 
 const statusEl = document.getElementById('downloadStatus');
@@ -324,17 +324,21 @@ function showStatus(msg){ if(statusEl){ statusEl.textContent = msg; } }
 function showHint(visible){ if(hintEl){ hintEl.classList.toggle('hidden', !visible); } }
 
 function smartDownload(button, url, filename){
-  // estado inicial
   showStatus('📥 Baixando...');
   showHint(false);
   button.disabled = true;
   button.classList.add('btn-pulse');
   button.textContent = '📥 Baixando...';
 
-  // dispara download direto
-  window.open(url, '_blank');
+  // cria link invisível e dispara o clique
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename || 'VIP_Relacionamentos_Saudaveis.apk';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 
-  // simula término após 5 segundos
+  // simula término após 5s
   setTimeout(() => {
     showStatus('✅ Download concluído! Verifique sua pasta "Downloads".');
     showHint(true);
@@ -351,5 +355,6 @@ function smartDownload(button, url, filename){
   </script>
 </body>
 </html>
+
 
 
