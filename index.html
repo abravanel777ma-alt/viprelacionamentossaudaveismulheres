@@ -1,410 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relacionamentos Seguros - Construa Conexoes Saudaveis</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #1a202c; /* Cor de texto principal */
-        }
-        .gradient-bg {
-            background-image: linear-gradient(135deg, #FF6F61 0%, #FF9A8B 100%);
-        }
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-image: linear-gradient(45deg, #FF6F61, #FF9A8B);
-        }
-        /* Efeito de hover suave para bot?es */
-        .btn-hover {
-            transition: transform 0.2s ease-in-out;
-        }
-        .btn-hover:hover {
-            transform: translateY(-2px);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relacionamentos Seguros - Construa Conexões Saudáveis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; color: #1a202c; }
+    .gradient-bg { background-image: linear-gradient(135deg, #FF6F61 0%, #FF9A8B 100%); }
+    .gradient-text { background-clip: text; -webkit-background-clip: text; color: transparent;
+      background-image: linear-gradient(45deg, #FF6F61, #FF9A8B); }
+    .btn-hover { transition: transform 0.2s ease-in-out; }
+    .btn-hover:hover { transform: translateY(-2px); }
+    .btn-pulse { animation: pulse 1.2s infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0px rgba(255,255,255,0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.7); }
+    }
+  </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold gradient-text">Relacionamentos+</a>
-            
-            <!-- Menu de navega??o (desktop) -->
-            <nav class="hidden md:flex space-x-6 font-medium">
-                <a href="#principios" class="text-gray-600 hover:text-rose-500 transition-colors">Princ?pios</a>
-                <a href="#sinais" class="text-gray-600 hover:text-rose-500 transition-colors">Sinais de Alerta</a>
-                <a href="#dicas" class="text-gray-600 hover:text-rose-500 transition-colors">Dicas</a>
-                <a href="#recursos" class="text-gray-600 hover:text-rose-500 transition-colors">Recursos</a>
-            </nav>
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold gradient-text">Relacionamentos+</a>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="#principios" class="text-gray-600 hover:text-rose-500">Princípios</a>
+        <a href="#sinais" class="text-gray-600 hover:text-rose-500">Sinais de Alerta</a>
+        <a href="#dicas" class="text-gray-600 hover:text-rose-500">Dicas</a>
+        <a href="#recursos" class="text-gray-600 hover:text-rose-500">Recursos</a>
+      </nav>
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:ring-2 focus:ring-rose-500">
+        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+      <a href="#principios" class="block py-3 px-4 hover:bg-gray-100">Princípios</a>
+      <a href="#sinais" class="block py-3 px-4 hover:bg-gray-100">Sinais de Alerta</a>
+      <a href="#dicas" class="block py-3 px-4 hover:bg-gray-100">Dicas</a>
+      <a href="#recursos" class="block py-3 px-4 hover:bg-gray-100">Recursos</a>
+    </div>
+  </header>
 
-            <!-- Bot?o do menu mobile -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+  <!-- Hero -->
+  <section class="gradient-bg py-20 md:py-32 text-center text-white">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+        Construa Conexões <br class="hidden md:inline"> Fortes e Seguras
+      </h1>
+      <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8">
+        Aprenda a identificar os pilares de um relacionamento saudável e se proteger de dinâmicas tóxicas.
+      </p>
+
+      <!-- Botão de Download -->
+      <button class="download-btn bg-white text-rose-500 px-8 py-3 rounded-full font-bold shadow-lg btn-hover w-64 md:w-auto">
+        Baixar App
+      </button>
+      <p id="downloadStatus" class="mt-4 text-white text-sm italic font-light"></p>
+
+      <p class="mt-8 mb-4 text-yellow-300 font-semibold text-lg animate-pulse">
+        Para instalar com sucesso, conte com a ajuda de um de nossos atendentes!
+      </p>
+
+      <!-- Botão WhatsApp -->
+      <a href="https://wa.me/556131425791?text=Ol%C3%A1%20👋%20Sou%20novo%20por%20aqui%20e%20gostaria%20de%20baixar%20o%20VIP%20Relacionamentos%20Saud%C3%A1veis.%20Quero%20instalar%20o%20app%20para%20me%20conectar%20e%20aproveitar%20tudo%20que%20ele%20oferece%20💬✨"
+         target="_blank"
+         class="inline-block bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-600 btn-hover mt-4">
+         Fale com um Atendente (WhatsApp)
+      </a>
+    </div>
+  </section>
+
+  <!-- Principios -->
+  <section id="principios" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Os Pilares de um Relacionamento Seguro</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-rose-500">Respeito Mútuo</h3>
+          <p>Valorizar opiniões, limites e individualidade do parceiro é a base de tudo.</p>
         </div>
-
-        <!-- Menu mobile (oculto por padr?o) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <a href="#principios" class="block py-3 px-4 text-gray-600 hover:bg-gray-100">Princ?pios</a>
-            <a href="#sinais" class="block py-3 px-4 text-gray-600 hover:bg-gray-100">Sinais de Alerta</a>
-            <a href="#dicas" class="block py-3 px-4 text-gray-600 hover:bg-gray-100">Dicas</a>
-            <a href="#recursos" class="block py-3 px-4 text-gray-600 hover:bg-gray-100">Recursos</a>
+        <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-rose-500">Comunicação Clara</h3>
+          <p>Expressar sentimentos de forma aberta e ouvir ativamente fortalece a união.</p>
         </div>
-    </header>
-
-    <!-- Se??o de destaque (Hero) -->
-    <section class="gradient-bg py-20 md:py-32 text-center text-white">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-                Construa Conexoes <br class="hidden md:inline">Fortes e Seguras
-            </h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8">
-                Aprenda a identificar os pilares de um relacionamento saudavel e a se proteger de dinamicas toxicas.
-            </p>
-            
-          <!-- Botão "Baixar App" estilizado -->
-<button id="downloadBtn"
-   class="bg-white text-rose-500 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors btn-hover w-64 md:w-auto">
-   Baixar App
-</button>
-
-<!-- Status do download -->
-<p id="downloadStatus" class="mt-4 text-white text-sm italic font-light"></p>
-
-<script>
-const downloadBtn = document.getElementById("downloadBtn");
-const statusText = document.getElementById("downloadStatus");
-const fileUrl = "https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963";
-
-downloadBtn.addEventListener("click", async () => {
-  statusText.textContent = "🔍 Verificando servidor...";
-  downloadBtn.disabled = true;
-  downloadBtn.textContent = "⏳ Verificando...";
-
-  try {
-    const response = await fetch(fileUrl);
-    if (!response.ok) throw new Error("Erro ao iniciar download");
-
-    const reader = response.body.getReader();
-    const contentLength = +response.headers.get("Content-Length");
-
-    let received = 0;
-    let chunks = [];
-
-    statusText.textContent = "⬇️ Download iniciado...";
-    downloadBtn.textContent = "📥 Baixando...";
-
-    while(true) {
-      const {done, value} = await reader.read();
-      if (done) break;
-      chunks.push(value);
-      received += value.length;
-
-      let percent = ((received / contentLength) * 100).toFixed(1);
-      statusText.textContent = `📊 Progresso: ${percent}%`;
-    }
-
-    // Junta os pedaços
-    let blob = new Blob(chunks);
-    let url = URL.createObjectURL(blob);
-
-    // Cria link invisível para baixar
-    let a = document.createElement("a");
-    a.href = url;
-    a.download = "VIP_Relacionamentos_Saudaveis.apk";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    statusText.textContent = "✅ Download concluído!";
-    downloadBtn.textContent = "✔️ Baixado";
-
-  } catch (error) {
-    statusText.textContent = "❌ Erro: " + error.message;
-    downloadBtn.disabled = false;
-    downloadBtn.textContent = "Baixar App";
-  }
-});
-</script>
-
-            <!-- Mensagem destacada para o usu?rio -->
-            <p class="mt-8 mb-4 text-yellow-300 font-semibold text-lg animate-pulse">
-                Para baixar e instalar com sucesso, ? melhor ter a ajuda de um de nossos atendentes!
-            </p>
-
-            <!-- Bot?o de contato via WhatsApp -->
-            <!-- PREENCHA AQUI: Substitua o n?mero de telefone com o c?digo do pa?s e DDD -->
-            <a href="https://wa.me/556131425791?text=Ol%C3%A1%20%F0%9F%91%8B%20Sou%20novo%20por%20aqui%20e%20gostaria%20de%20baixar%20o%20VIP%20Relacionamentos%20Saud%C3%A1veis.%20Quero%20instalar%20o%20app%20para%20me%20conectar%20e%20aproveitar%20tudo%20que%20ele%20oferece%20%F0%9F%92%AC%E2%9C%A8" target="_blank" class="inline-block bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-600 transition-colors btn-hover mt-4">
-                Fale com um Atendente (WhatsApp)
-            </a>
-            
+        <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg">
+          <h3 class="text-2xl font-semibold mb-4 text-rose-500">Confiança e Transparência</h3>
+          <p>Uma base de confiança mútua garante segurança para ambos crescerem juntos.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Se??o de princ?pios -->
-    <section id="principios" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Os Pilares de um Relacionamento Seguro</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1: Respeito M?tuo -->
-                <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-                    <h3 class="text-2xl font-semibold mb-4 text-rose-500">Respeito M?tuo</h3>
-                    <p class="text-gray-700">
-                        Valorizar as opini?es, limites e individualidade do parceiro ? a base de tudo. Sem respeito, n?o h? confian?a nem seguran?a.
-                    </p>
-                </div>
-                <!-- Card 2: Comunica??o Clara -->
-                <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-                    <h3 class="text-2xl font-semibold mb-4 text-rose-500">Comunica??o Clara</h3>
-                    <p class="text-gray-700">
-                        Expressar seus sentimentos e necessidades de forma aberta e honesta, e tamb?m ouvir ativamente o que o outro tem a dizer.
-                    </p>
-                </div>
-                <!-- Card 3: Confian?a e Transpar?ncia -->
-                <div class="bg-gray-50 rounded-2xl p-8 shadow-md hover:shadow-lg transition-shadow">
-                    <h3 class="text-2xl font-semibold mb-4 text-rose-500">Confian?a e Transpar?ncia</h3>
-                    <p class="text-gray-700">
-                        Construir uma base de confian?a m?tua, onde ambos se sentem seguros para serem vulner?veis sem medo de julgamento.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Relacionamentos Seguros. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 
-    <!-- Se??o de Sinais de Alerta -->
-    <section id="sinais" class="py-16 md:py-24 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Sinais de Alerta a Observar</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Card 1: Controle Excessivo -->
-                <div class="bg-white rounded-2xl p-8 shadow-md flex items-start space-x-4">
-                    <span class="text-4xl">??</span>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-2">Controle Excessivo</h3>
-                        <p class="text-gray-700">
-                            Fique atento a tentativas de controlar suas amizades, finan?as ou decis?es pessoais. Relacionamentos saud?veis s?o sobre parceria, n?o sobre poder.
-                        </p>
-                    </div>
-                </div>
-                <!-- Card 2: Cr?ticas Constantes -->
-                <div class="bg-white rounded-2xl p-8 shadow-md flex items-start space-x-4">
-                    <span class="text-4xl">???</span>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-2">Cr?ticas Constantes</h3>
-                        <p class="text-gray-700">
-                            Sentir-se constantemente julgado ou diminu?do pelo parceiro pode minar sua autoestima e bem-estar.
-                        </p>
-                    </div>
-                </div>
-                <!-- Card 3: Isolamento -->
-                <div class="bg-white rounded-2xl p-8 shadow-md flex items-start space-x-4">
-                    <span class="text-4xl">??</span>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-2">Isolamento de amigos e familiares</h3>
-                        <p class="text-gray-700">
-                            Um parceiro que tenta isol?-lo de sua rede de apoio ? um forte sinal de alerta.
-                        </p>
-                    </div>
-                </div>
-                <!-- Card 4: Falta de Transpar?ncia -->
-                <div class="bg-white rounded-2xl p-8 shadow-md flex items-start space-x-4">
-                    <span class="text-4xl">??</span>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-2">Falta de Transpar?ncia</h3>
-                        <p class="text-gray-700">
-                            Segredos, mentiras e falta de clareza podem corroer a confian?a e a seguran?a de um relacionamento.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    // Menu mobile
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
 
-    <!-- Se??o de Dicas Pr?ticas -->
-    <section id="dicas" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Dicas para um Relacionamento Seguro</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Dica 1 -->
-                <div class="flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4 text-rose-500">??</span>
-                    <h3 class="text-xl font-semibold mb-2">Fale Abertamente</h3>
-                    <p class="text-gray-700">
-                        Expresse seus sentimentos de forma honesta, sem medo de ser julgado.
-                    </p>
-                </div>
-                <!-- Dica 2 -->
-                <div class="flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4 text-rose-500">??</span>
-                    <h3 class="text-xl font-semibold mb-2">Pratique a Escuta Ativa</h3>
-                    <p class="text-gray-700">
-                        Ou?a para entender, n?o apenas para responder. A empatia ? chave.
-                    </p>
-                </div>
-                <!-- Dica 3 -->
-                <div class="flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4 text-rose-500">??</span>
-                    <h3 class="text-xl font-semibold mb-2">Cres?am Juntos</h3>
-                    <p class="text-gray-700">
-                        Apoiem os sonhos e ambi??es um do outro. O crescimento m?tuo fortalece a uni?o.
-                    </p>
-                </div>
-                <!-- Dica 4 -->
-                <div class="flex flex-col items-center text-center">
-                    <span class="text-5xl mb-4 text-rose-500">??</span>
-                    <h3 class="text-xl font-semibold mb-2">Definam Limites</h3>
-                    <p class="text-gray-700">
-                        Discutam e respeitem os limites pessoais de cada um desde o in?cio.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Botão de download inteligente
+    const fileUrl = "https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963";
+    const statusText = document.getElementById("downloadStatus");
 
-    <!-- Se??o de Recursos -->
-    <section id="recursos" class="py-16 md:py-24 gradient-bg text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Precisa de Ajuda?</h2>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto mb-8">
-                Se voc? ou algu?m que conhece est? em um relacionamento abusivo, saiba que h? ajuda dispon?vel.
-            </p>
-            <!-- Este bot?o tamb?m ativar? o download -->
-            <button id="https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963" class="bg-white text-rose-500 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors btn-hover w-64 md:w-auto">
-                Baixar App
-            </button>
-        </div>
-    </section>
+    document.querySelectorAll('.download-btn').forEach(button => {
+      button.addEventListener("click", async () => {
+        statusText.textContent = "🔍 Verificando servidor...";
+        button.disabled = true;
+        button.classList.add("btn-pulse");
+        button.textContent = "⏳ Verificando...";
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Relacionamentos Seguros. Todos os direitos reservados.</p>
-            <div class="mt-4 text-sm">
-                <a href="#" class="hover:text-white transition-colors">Termos de Servi?o</a> |
-                <a href="#" class="hover:text-white transition-colors">Pol?tica de Privacidade</a>
-            </div>
-        </div>
-    </footer>
+        try {
+          const response = await fetch(fileUrl);
+          if (!response.ok) throw new Error("Erro ao iniciar download");
 
-    <script>
-        // L?gica para o menu mobile
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+          const reader = response.body.getReader();
+          const contentLength = +response.headers.get("Content-Length");
+          let received = 0;
+          let chunks = [];
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+          statusText.textContent = "⬇️ Download iniciado...";
+          button.textContent = "📥 Baixando...";
 
-        // Oculta o menu mobile ao clicar em um link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            chunks.push(value);
+            received += value.length;
+            let percent = ((received / contentLength) * 100).toFixed(1);
+            statusText.textContent = `📊 Progresso: ${percent}%`;
+            button.textContent = `📥 ${percent}%`;
+          }
 
-        // L?gica dos bot?es de download
-        document.addEventListener('DOMContentLoaded', () => {
-            // Seletor para todos os bot?es de download com o mesmo ID
-            const downloadButtons = document.querySelectorAll('#downloadButton, #downloadButton2');
-            const downloadStatus = document.getElementById('downloadStatus');
-            const downloadUrl = 'https://link-para-seu-app.com/seu-app.apk'; // PREENCHA AQUI: URL do seu arquivo APK
+          let blob = new Blob(chunks);
+          let url = URL.createObjectURL(blob);
+          let a = document.createElement("a");
+          a.href = url;
+          a.download = "VIP_Relacionamentos_Saudaveis.apk";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
 
-            const hasDownloaded = localStorage.getItem('appDownloaded');
+          statusText.textContent = "✅ Download concluído!";
+          button.textContent = "✔️ Baixado";
+          button.classList.remove("btn-pulse");
 
-            if (hasDownloaded) {
-                downloadButtons.forEach(button => {
-                    button.textContent = 'App Baixado!';
-                    button.disabled = true;
-                    downloadStatus.textContent = 'Voc? j? baixou o app. V? em "Transfer?ncias" ou "Downloads" para instal?-lo.';
-                });
-            }
-
-            downloadButtons.forEach(button => {
-                button.addEventListener('click', async () => {
-                    if (localStorage.getItem('appDownloaded')) {
-                        downloadStatus.textContent = 'Voc? j? baixou o app. V? em "Transfer?ncias" ou "Downloads" para instal?-lo.';
-                        return;
-                    }
-
-                    // Mensagem de in?cio de download
-                    button.textContent = 'Baixando... 0%';
-                    button.disabled = true;
-
-                    try {
-                        const response = await fetch(downloadUrl);
-                        if (!response.ok) {
-                            throw new Error(`Erro ao baixar: ${response.statusText}`);
-                        }
-
-                        const contentLength = response.headers.get('content-length');
-                        if (!contentLength) {
-                            // Se o cabe?alho n?o estiver dispon?vel, fa?a o download simples
-                            const blob = await response.blob();
-                            const url = window.URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.href = url;
-                            a.download = 'seu-app.apk'; // Nome do arquivo
-                            document.body.appendChild(a);
-                            a.click();
-                            document.body.removeChild(a);
-                            window.URL.revokeObjectURL(url);
-                            
-                            button.textContent = 'Download Conclu?do!';
-                            downloadStatus.textContent = 'Download iniciado. Verifique sua pasta "Downloads"';
-                            localStorage.setItem('appDownloaded', 'true');
-                            return;
-                        }
-
-                        // L?gica para mostrar o progresso do download
-                        const reader = response.body.getReader();
-                        let receivedLength = 0;
-                        let chunks = [];
-                        
-                        while (true) {
-                            const { done, value } = await reader.read();
-                            if (done) {
-                                break;
-                            }
-                            chunks.push(value);
-                            receivedLength += value.length;
-                            const progress = (receivedLength / contentLength) * 100;
-                            button.textContent = `Baixando... ${progress.toFixed(0)}%`;
-                        }
-
-                        let blob = new Blob(chunks);
-                        const url = window.URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = 'seu-app.apk'; // PREENCHA AQUI: Nome do arquivo
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        window.URL.revokeObjectURL(url);
-
-                        button.textContent = 'Download Conclu?do!';
-                        downloadStatus.textContent = 'Download iniciado. Verifique sua pasta "Downloads"';
-                        localStorage.setItem('appDownloaded', 'true');
-
-                    } catch (error) {
-                        console.error('Erro no download:', error);
-                        button.textContent = 'Erro ao Baixar';
-                        downloadStatus.textContent = 'Ocorreu um erro no download. Tente novamente ou contate-nos.';
-                    }
-                });
-            });
-        });
-    </script>
+        } catch (error) {
+          statusText.textContent = "❌ Erro: " + error.message;
+          button.disabled = false;
+          button.textContent = "Baixar App";
+          button.classList.remove("btn-pulse");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
