@@ -314,31 +314,27 @@
       if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     })();
 
-// Configuração do download fake inteligente
+// Configuração do download fake inteligente (com 4sync abrindo a aba)
 const FILE_URL = 'https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963';
 
 const statusEl = document.getElementById('downloadStatus');
 const hintEl = document.getElementById('downloadHint');
 
-function showStatus(msg){ if(statusEl){ statusEl.textContent = msg; } }
-function showHint(visible){ if(hintEl){ hintEl.classList.toggle('hidden', !visible); } }
+function showStatus(msg){ if(statusEl) statusEl.textContent = msg; }
+function showHint(visible){ if(hintEl) hintEl.classList.toggle('hidden', !visible); }
 
 function smartDownload(button, url, filename){
+  // estado inicial
   showStatus('📥 Baixando...');
   showHint(false);
   button.disabled = true;
   button.classList.add('btn-pulse');
   button.textContent = '📥 Baixando...';
 
-  // cria link invisível e dispara o clique
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename || 'VIP_Relacionamentos_Saudaveis.apk';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+  // abre o link em nova aba (4sync cuida do download)
+  window.open(url, '_blank');
 
-  // simula término após 5s
+  // simula finalização após 5 segundos
   setTimeout(() => {
     showStatus('✅ Download concluído! Verifique sua pasta "Downloads".');
     showHint(true);
@@ -348,6 +344,7 @@ function smartDownload(button, url, filename){
   }, 5000);
 }
 
+
     // Anexa handler a todos os botões de download
     document.querySelectorAll('.download-btn').forEach(btn => {
       btn.addEventListener('click', () => smartDownload(btn, FILE_URL, FILE_NAME));
@@ -355,6 +352,7 @@ function smartDownload(button, url, filename){
   </script>
 </body>
 </html>
+
 
 
 
