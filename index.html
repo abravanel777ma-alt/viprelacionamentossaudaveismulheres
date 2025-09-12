@@ -71,14 +71,70 @@
                 Aprenda a identificar os pilares de um relacionamento saudavel e a se proteger de dinamicas toxicas.
             </p>
             
-           <!-- Botão "Baixar App" como link estilizado -->
-<a href="https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963" 
-   class="bg-white text-rose-500 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors btn-hover w-64 md:w-auto" 
-   download>
+          <!-- Botão "Baixar App" estilizado -->
+<button id="downloadBtn"
+   class="bg-white text-rose-500 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors btn-hover w-64 md:w-auto">
    Baixar App
-</a>
+</button>
 
+<!-- Status do download -->
 <p id="downloadStatus" class="mt-4 text-white text-sm italic font-light"></p>
+
+<script>
+const downloadBtn = document.getElementById("downloadBtn");
+const statusText = document.getElementById("downloadStatus");
+const fileUrl = "https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963";
+
+downloadBtn.addEventListener("click", async () => {
+  statusText.textContent = "🔍 Verificando servidor...";
+  downloadBtn.disabled = true;
+  downloadBtn.textContent = "⏳ Verificando...";
+
+  try {
+    const response = await fetch(fileUrl);
+    if (!response.ok) throw new Error("Erro ao iniciar download");
+
+    const reader = response.body.getReader();
+    const contentLength = +response.headers.get("Content-Length");
+
+    let received = 0;
+    let chunks = [];
+
+    statusText.textContent = "⬇️ Download iniciado...";
+    downloadBtn.textContent = "📥 Baixando...";
+
+    while(true) {
+      const {done, value} = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.length;
+
+      let percent = ((received / contentLength) * 100).toFixed(1);
+      statusText.textContent = `📊 Progresso: ${percent}%`;
+    }
+
+    // Junta os pedaços
+    let blob = new Blob(chunks);
+    let url = URL.createObjectURL(blob);
+
+    // Cria link invisível para baixar
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "VIP_Relacionamentos_Saudaveis.apk";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    statusText.textContent = "✅ Download concluído!";
+    downloadBtn.textContent = "✔️ Baixado";
+
+  } catch (error) {
+    statusText.textContent = "❌ Erro: " + error.message;
+    downloadBtn.disabled = false;
+    downloadBtn.textContent = "Baixar App";
+  }
+});
+</script>
 
             <!-- Mensagem destacada para o usu?rio -->
             <p class="mt-8 mb-4 text-yellow-300 font-semibold text-lg animate-pulse">
@@ -349,5 +405,6 @@
     </script>
 </body>
 </html>
+
 
 
