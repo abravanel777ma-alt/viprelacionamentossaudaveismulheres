@@ -314,82 +314,35 @@
       if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     })();
 
-    // Configuração do download inteligente
-    const FILE_URL = 'https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963';
-  
+  // Configuração do download inteligente (fake simplificado)
+const FILE_URL = 'https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963';
 
-    const statusEl = document.getElementById('downloadStatus');
-    const hintEl = document.getElementById('downloadHint');
-    const progressWrap = document.querySelector('#global-progress .progress-wrap');
-    const progressBar = document.getElementById('progressBar');
+const statusEl = document.getElementById('downloadStatus');
+const hintEl = document.getElementById('downloadHint');
 
-    function showStatus(msg){ if(statusEl){ statusEl.textContent = msg; } }
-    function showHint(visible){ if(hintEl){ hintEl.classList.toggle('hidden', !visible); } }
-    function setProgress(p){ if(progressBar){ progressBar.style.width = `${p}%`; } }
-    function toggleProgress(visible){ if(progressWrap){ progressWrap.classList.toggle('hidden', !visible); } }
+function showStatus(msg){ if(statusEl){ statusEl.textContent = msg; } }
+function showHint(visible){ if(hintEl){ hintEl.classList.toggle('hidden', !visible); } }
 
-    async function smartDownload(button, url, filename){
-      try {
-        showStatus('🔍 Verificando servidor...');
-        showHint(false);
-        toggleProgress(true);
-        setProgress(0);
-        button.disabled = true;
-        button.classList.add('btn-pulse');
-        button.textContent = '⏳ Verificando...';
+function smartDownload(button, url, filename){
+  // estado inicial
+  showStatus('📥 Baixando...');
+  showHint(false);
+  button.disabled = true;
+  button.classList.add('btn-pulse');
+  button.textContent = '📥 Baixando...';
 
-        const resp = await fetch(url);
-        if (!resp.ok || !resp.body) throw new Error('Não foi possível iniciar o download.');
+  // dispara download direto
+  window.open(url, '_blank');
 
-        const total = Number(resp.headers.get('Content-Length')) || 0;
-        const reader = resp.body.getReader();
-        const chunks = [];
-        let received = 0;
-
-        showStatus('⬇️ Download iniciado...');
-        button.textContent = '📥 Baixando...';
-
-        while(true){
-          const { done, value } = await reader.read();
-          if(done) break;
-          chunks.push(value);
-          received += value.length;
-          if(total){
-            const percent = Math.max(0, Math.min(100, (received/total)*100));
-            setProgress(percent.toFixed(2));
-            showStatus(`📊 Progresso: ${percent.toFixed(1)}%`);
-            button.textContent = `📥 ${percent.toFixed(0)}%`;
-          }
-        }
-
-        const blob = new Blob(chunks);
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(blobUrl);
-
-        showStatus('✅ Download concluído! Verifique sua pasta "Downloads".');
-        showHint(true);
-        setProgress(100);
-        button.textContent = '✔️ Baixado';
-        button.classList.remove('btn-pulse');
-      } catch (err){
-        // Fallback: navega direto para a URL do arquivo (alguns hosts bloqueiam streams/fetch)
-        showStatus('⚠️ Houve um problema no download inteligente. Tentando método alternativo...');
-        setProgress(0);
-        try {
-          window.location.href = url; // abre download direto
-          showHint(true);
-        } catch(e){}
-        button.disabled = false;
-        button.textContent = 'Baixar App';
-        button.classList.remove('btn-pulse');
-      }
-    }
+  // simula término após 5 segundos
+  setTimeout(() => {
+    showStatus('✅ Download concluído! Verifique sua pasta "Downloads".');
+    showHint(true);
+    button.textContent = '✔️ Baixado';
+    button.classList.remove('btn-pulse');
+    button.disabled = false;
+  }, 5000);
+}
 
     // Anexa handler a todos os botões de download
     document.querySelectorAll('.download-btn').forEach(btn => {
@@ -398,4 +351,5 @@
   </script>
 </body>
 </html>
+
 
