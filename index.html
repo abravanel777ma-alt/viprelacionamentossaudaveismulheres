@@ -314,36 +314,13 @@
       if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     })();
 
-// Configuração do download fake inteligente (com 4sync abrindo a aba)
-const FILE_URL = 'https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963';
-
-const statusEl = document.getElementById('downloadStatus');
-const hintEl = document.getElementById('downloadHint');
-
-function showStatus(msg){ if(statusEl) statusEl.textContent = msg; }
-function showHint(visible){ if(hintEl) hintEl.classList.toggle('hidden', !visible); }
-
-function smartDownload(button, url, filename){
-  // estado inicial
-  showStatus('📥 Baixando...');
-  showHint(false);
-  button.disabled = true;
-  button.classList.add('btn-pulse');
-  button.textContent = '📥 Baixando...';
-
-  // abre o link em nova aba (4sync cuida do download)
-  window.open(url, '_blank');
-
-  // simula finalização após 5 segundos
-  setTimeout(() => {
-    showStatus('✅ Download concluído! Verifique sua pasta "Downloads".');
-    showHint(true);
-    button.textContent = '✔️ Baixado';
-    button.classList.remove('btn-pulse');
-    button.disabled = false;
-  }, 5000);
-}
-
+    
+<!-- Botão de Download -->
+<button 
+  onclick="window.location.href='https://www.4sync.com/web/directDownload/gVUIZk2U/3yIVF19s.f1c23719cc34f797579b67a55b464963'" 
+  class="bg-white text-rose-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors">
+  📥 Baixar App
+</button>
 
     // Anexa handler a todos os botões de download
     document.querySelectorAll('.download-btn').forEach(btn => {
@@ -352,6 +329,7 @@ function smartDownload(button, url, filename){
   </script>
 </body>
 </html>
+
 
 
 
